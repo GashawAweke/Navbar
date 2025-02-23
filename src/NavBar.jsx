@@ -8,28 +8,39 @@ import { useRef, useState } from 'react';
 // console.log('width', window.innerWidth);
 
 const NavBar = () => {
-  const [showLinks, setShowLinks] = useState(true);
+  const [showLinks, setShowLinks] = useState(false);
   const linksContainerRef = useRef(null);
   const linksRef = useRef(null);
 
   const toggleLinks = () => {
+    // console.log(linksRef.current.getBoundingClientRect());
     setShowLinks(!showLinks);
   };
+
+  const linkStyle = {
+    height: showLinks
+      ? `${linksRef.current.getBoundingClientRect().height}px`
+      : `0px`,
+  };
+
   return (
-    <div className='nav-center'>
-      <div className='nav-header'>
-        <img className='logo' src={logo} alt='logo' />
-        <button onClick={toggleLinks} className='nav-toggle'>
-          <FaBars />
-        </button>
-      </div>
+    <nav>
+      <div className='nav-center'>
+        <div className='nav-header'>
+          <img className='logo' src={logo} alt='logo' />
+          <button onClick={toggleLinks} className='nav-toggle'>
+            <FaBars />
+          </button>
+        </div>
 
-      {showLinks && (
-        <div className='links-container'>
-          <ul className='links'>
-            {links.map((links) => {
-              const { id, url, text } = links;
-
+        <div
+          className='links-container'
+          ref={linksContainerRef}
+          style={linkStyle}
+        >
+          <ul className='links' ref={linksRef}>
+            {links.map((link) => {
+              const { id, url, text } = link;
               return (
                 <li key={id}>
                   <a href={url}>{text}</a>
@@ -38,8 +49,23 @@ const NavBar = () => {
             })}
           </ul>
         </div>
-      )}
-    </div>
+
+        <div>
+          {/* social linls */}
+          <ul className='social-icons'>
+            {social.map((socialIcon) => {
+              const { id, url, icon } = socialIcon;
+
+              return (
+                <li key={id}>
+                  <a href={url}>{icon}</a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 };
 

@@ -25,27 +25,32 @@ export const links = [
     url: '/profile',
     text: 'profile',
   },
+  {
+    id: 6,
+    url: '/extra',
+    text: 'extra',
+  },
 ];
 
 export const social = [
   {
     id: 1,
-    url: 'https://www.twitter.com',
+    url: '#',
     icon: <FaFacebook />,
   },
   {
     id: 2,
-    url: 'https://www.twitter.com',
+    url: '#',
     icon: <FaTwitter />,
   },
   {
     id: 3,
-    url: 'https://www.twitter.com',
+    url: '#',
     icon: <FaLinkedin />,
   },
   {
     id: 4,
-    url: 'https://www.twitter.com',
+    url: '#',
     icon: <FaBehance />,
   },
 ];
